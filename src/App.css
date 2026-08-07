@@ -1,0 +1,16 @@
+/* Limpieza total de los estilos por defecto de Vite */
+html, 
+body, 
+#root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Opcional: Asegurar que los componentes no hereden márgenes extraños */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
