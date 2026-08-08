@@ -1,9 +1,9 @@
-import React from 'react'
 import AgregarJugador from './AgregarJugador'
+import ListadoJugadores from './ListadoJugadores'
 
 const Dashboard = () => {
     const obtenerPaises = () => {
-    fetch('https://worldcupfan.develotion.com/jugadores', {
+    fetch('https://worldcupfan.develotion.com/selecciones', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -29,6 +29,7 @@ const Dashboard = () => {
 
       <button onClick={obtenerPaises}>Get Paises</button>
       <AgregarJugador/>
+      <ListadoJugadores/>
     </div>
   )
 }

@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setContenidoPaises } from '../store/slices/paisesSlice'
 import { setContenidoPosiciones } from '../store/slices/posicionesSlice'
+import { setContenidoSelecciones } from '../store/slices/seleccionesSlice'
 import { setLoading } from '../store/slices/spinnerSlice'
 import { agregarJugador } from '../store/slices/jugadoresSlice'
 import Spinner from './Spinner'
@@ -25,14 +25,15 @@ const AgregarJugador = () => {
 
     const dispatch = useDispatch();
     const usuarioLoading = useSelector(state => state.spinner.isLoading)
-    const { listaPaises: paises = [], cargados } = useSelector(state => state.paises)
+    const { listaSelecciones: selecciones = [], cargadosS } = useSelector(state => state.selecciones)
 
     useEffect(() => {
-        if (!cargados) {
-            fetch('https://worldcupfan.develotion.com/paises', {
+        if (!cargadosS) {
+            fetch('https://worldcupfan.develotion.com/selecciones', {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             })
                 .then(response => {
@@ -42,14 +43,14 @@ const AgregarJugador = () => {
                     return response.json()
                 })
                 .then(data => {
-                    dispatch(setContenidoPaises(data.paises))
+                    dispatch(setContenidoSelecciones(data.selecciones))
                 })
                 .catch(error => {
                     console.error('Error al obtener los paises:', error)
                 })
 
         }
-    }, [cargados, dispatch])
+    }, [cargadosS, dispatch])
 
     const { listaPosiciones: posiciones = [], cargadosPosiciones } = useSelector(state => state.posiciones)
 
@@ -114,7 +115,15 @@ const AgregarJugador = () => {
                 })
                 .then(data => {
                     if (data) {
-                        dispatch(agregarJugador(data));
+                        const jugadorCompleto = {
+                            id: data.id, 
+                            nombre: nombreJ.current.value,
+                            idSeleccion: Number(seleccionJ.current.value),
+                            posicion: Number(posicionJ.current.value), 
+                            fechaNacimiento: fechaNacJ.current.value
+                        };
+
+                        dispatch(agregarJugador(jugadorCompleto));
                         setMensajeExito('Jugador agregado exitosamente!')
 
                         setTimeout(() => {
@@ -144,11 +153,11 @@ const AgregarJugador = () => {
             <form>
                 {/* Select Selecciones */}
                 <div className="mb-3">
-                    <label htmlFor="seleccion" className="form-label text-secondary" style={{ fontSize: '13px' }}>Pais:</label>
+                    <label htmlFor="seleccion" className="form-label text-secondary" style={{ fontSize: '13px' }}>Seleccion:</label>
                     <select id="seleccion" className="form-select py-2" ref={seleccionJ} onChange={cambioInputs} defaultValue="" style={{ borderRadius: '4px', fontSize: '15px', color: '#4f4f4f' }} >
                         <option value="" disabled>Seleccione un pais</option>
-                        {paises.map(pais => (
-                            <option key={pais.id} value={pais.id}>{pais.nombre}</option>
+                        {selecciones.map(seleccion => (
+                            <option key={seleccion.id} value={seleccion.id}>{seleccion.nombre}</option>
                         ))}
                     </select>
                 </div>
