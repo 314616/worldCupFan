@@ -17,7 +17,7 @@
             state.listaJugadores.push(action.payload)
         },
         eliminarJugador: (state, action) =>{
-            state.listaJugadores.filter(jugador => jugador.id !== action.payload)
+            state.listaJugadores = state.listaJugadores.filter(jugador => jugador.id !== action.payload)
         }
     }
  })
