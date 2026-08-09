@@ -1,11 +1,12 @@
 import AgregarJugador from './AgregarJugador'
+import GraficoXSeleccion from './GraficoXSeleccion'
 import ListadoJugadores from './ListadoJugadores'
 import PosicionDestacada from './PosicionDestacada'
 import SeleccionFavorita from './SeleccionFavorita'
 
 const Dashboard = () => {
     const obtenerPaises = () => {
-    fetch('https://worldcupfan.develotion.com/paises', {
+    fetch('https://worldcupfan.develotion.com/jugadores', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -34,6 +35,7 @@ const Dashboard = () => {
       <ListadoJugadores/>
       <SeleccionFavorita/>
       <PosicionDestacada/>
+      <GraficoXSeleccion/>
     </div>
   )
 }
