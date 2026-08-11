@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 const PosicionDestacada = () => {
-  const { listaJugadores = [] } = useSelector((state) => state.jugadores);
+  const listaJugadores  = useSelector((state) => state.jugadores.listaJugadores);
 
 
   if (listaJugadores.length === 0) {

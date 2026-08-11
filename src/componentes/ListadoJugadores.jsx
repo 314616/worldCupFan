@@ -7,7 +7,7 @@ import '../App.css'
 const ListadoJugadores = () => {
 
   const dispatch = useDispatch();
-  const { listaJugadores } = useSelector((state) => state.jugadores)
+  const listaJugadores  = useSelector((state) => state.jugadores.listaJugadores)
 
 
   useEffect(() => {

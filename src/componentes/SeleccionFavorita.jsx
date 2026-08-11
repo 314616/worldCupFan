@@ -3,8 +3,8 @@ import { useSelector } from "react-redux"
 
 const SeleccionFavorita = () => {
 
-  const { listaJugadores = [] } = useSelector((state) => state.jugadores);
-  const { listaSelecciones: selecciones = [] } = useSelector((state) => state.selecciones);
+  const  listaJugadores  = useSelector((state) => state.jugadores.listaJugadores);
+  const  selecciones  = useSelector((state) => state.selecciones.listaSelecciones);
 
 
   if (listaJugadores.length === 0) {
