@@ -3,18 +3,17 @@ import { useSelector, useDispatch } from "react-redux"
 
 import { cargarJugadores, eliminarJugador } from "../store/slices/jugadoresSlice";
 import { setContenidoSelecciones } from "../store/slices/seleccionesSlice";
-
+import '../App.css'
 
 const ListadoJugadores = () => {
 
 
   const dispatch = useDispatch();
 
-  const { listaJugadores, cargadosJ } = useSelector((state) => state.jugadores)
+  const { listaJugadores } = useSelector((state) => state.jugadores)
 
 
   useEffect(() => {
-    if (!cargadosJ) {
       fetch('https://worldcupfan.develotion.com/jugadores', {
         method: 'GET',
         headers: {
@@ -34,9 +33,7 @@ const ListadoJugadores = () => {
         .catch(error => {
           console.error('Error al obtener los jugadores:', error)
         })
-
-    }
-  }, [cargadosJ, dispatch])
+  }, [])
 
 
   const { listaSelecciones: selecciones = [], cargadosS } = useSelector(state => state.selecciones)
@@ -54,7 +51,7 @@ const ListadoJugadores = () => {
     }
   };
 
- // jugadoresAMostrar es la lista que renderiza la tabla, ya sea tenga o no filtros aplicados
+  // jugadoresAMostrar es la lista que renderiza la tabla, ya sea tenga o no filtros aplicados
   const jugadoresAMostrar = valorFiltroActual === "todos"
     ? listaJugadores
     : listaJugadores.filter(jugador => String(jugador.idSeleccion) === String(valorFiltroActual));
@@ -82,7 +79,7 @@ const ListadoJugadores = () => {
           console.error('Error al obtener las selecciones:', error)
         })
     }
-  }, [cargadosS, dispatch])
+  }, [])
 
   const mapaEmojis = new Map(
     selecciones.map(seleccion => [String(seleccion.id), seleccion.emoji])
@@ -104,26 +101,26 @@ const ListadoJugadores = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('No se pudo eliminar del server')
-        }
-        return response.json()
-      })
-      .then(data => {
-        dispatch(eliminarJugador(id))
-        console.log('dispatch')
-      })
-      .catch(error => {
-        console.error('Error al obtener las selecciones:', error)
-      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('No se pudo eliminar del server')
+          }
+          return response.json()
+        })
+        .then(data => {
+          dispatch(eliminarJugador(id))
+          console.log('dispatch')
+        })
+        .catch(error => {
+          console.error('Error al obtener las selecciones:', error)
+        })
 
     }
   }
   return (
-    <div><h2>Listado de Jugadores</h2>
-      <div style={{ marginBottom: '20px' }}>
-        <label htmlFor="filtroPais" style={{ marginRight: '10px', fontWeight: 'bold' }}>Filtrar por Selección: </label>
+    <div>
+      <div className="d-flex align-items-center justify-content-center my-4">
+        <label htmlFor="filtroPais" className="form-label me-2 mb-0 fw-bold text-secondary">Filtrar por Selección: </label>
         <select
           id="filtroPais"
           //value={seleccionFiltrada}
@@ -131,6 +128,8 @@ const ListadoJugadores = () => {
           //onChange={() => setActualizarFiltro(!actualizar)}
           onChange={manejarCambioFiltro}
           defaultValue="todos"
+          className="form-select form-select-sm rounded-pill text-center border-secondary-subtle focus-ring"
+          style={{ width: 'auto', minWidth: '180px', '--bs-focus-ring-color': '#0d6efd' }}
         >
           <option value="todos">Todos los países</option>
           {selecciones.map(pais => (
@@ -138,13 +137,14 @@ const ListadoJugadores = () => {
           ))}
         </select>
       </div>
-      <table border="1" style={{ width: '100%', textAlign: 'left', marginBottom: '20px', borderCollapse: 'collapse' }}>
+      <table class="table table-bordered table-sm custom-sf-table align-middle">
         <thead>
           <tr style={{ backgroundColor: '#f2f2f2' }}>
             <th>Nombre</th>
             <th>Posición</th>
             <th>Fecha de nacimiento</th>
             <th>Seleccion</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -155,7 +155,8 @@ const ListadoJugadores = () => {
               <td>{jugador.posicion}</td>
               <td>{jugador.fechaNacimiento}</td>
               <td>{obtenerEmojiSelec(jugador.idSeleccion)}</td>
-              <td><button type="button" onClick={() => eliminarJugadorAux(jugador.id)}>Eliminar</button></td>
+              <td><button type="button" className="btn btn-outline-secondary btn-sm rounded-pill px-3 link-hover-danger"
+                style={{ '--bs-btn-hover-bg': '#dc3545', '--bs-btn-hover-border-color': '#dc3545' }} onClick={() => eliminarJugadorAux(jugador.id)}>Eliminar</button></td>
             </tr>
           ))}
         </tbody>

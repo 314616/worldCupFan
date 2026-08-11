@@ -12,10 +12,12 @@ const Registro = () => {
     const selectPais = useRef(null)
 
     const [botonRegistro, setBotonRegistro] = useState(false)
+    const [mensajeError, setMensajeError] = useState('')
+    const [error, setError] = useState(false)
 
     const dispatch = useDispatch()
     const usuarioLoading = useSelector(state => state.spinner.isLoading)
-    const { listaPaises: paises =[], cargados } = useSelector(state => state.paises)
+    const { listaPaises: paises = [], cargados } = useSelector(state => state.paises)
 
     useEffect(() => {
         if (!cargados) {
@@ -69,12 +71,14 @@ const Registro = () => {
             .then(data => {
                 console.log(data)
                 localStorage.setItem('token', data.token)
-                localStorage.setItem('usuario', data.usuario)
+                localStorage.setItem('usuario', bodyData.usuario)
                 localStorage.setItem('id', data.id)
                 navigate('/dashboard')
             })
             .catch(error => {
                 console.error('Error al registrar:', error)
+                setError(true)
+                setMensajeError('Usuario y/o contraseña incorrectos')
             })
             .finally(() => {
                 dispatch(setLoading(false))
@@ -90,6 +94,13 @@ const Registro = () => {
                     WorldCupFan
                 </h1>
                 <div className="card shadow-sm border-0 p-4 text-start" style={{ borderRadius: '4px', backgroundColor: '#ffffff' }}>
+                    <div style={{ minHeight: '30px', display: 'flex', alignItems: 'center' }} className="mb-2">
+                        {error ? (
+                            <p className="m-0 text-start" style={{ color: '#cc0000', fontSize: '13px', lineHeight: '1.4' }}>
+                                Error: {mensajeError}
+                            </p>
+                        ) : null}
+                    </div>
                     <form>
                         <div className="mb-3">
                             <label htmlFor="usuario" className="form-label text-secondary" style={{ fontSize: '13px' }}>Username:</label>

@@ -6,10 +6,7 @@ const PosicionDestacada = () => {
 
   if (listaJugadores.length === 0) {
     return (
-      <div className="card p-3 border-0 shadow-sm text-center" style={{ backgroundColor: '#ffffff', borderRadius: '4px' }}>
-        <h5 className="text-secondary mb-1" style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-          Posición Destacada
-        </h5>
+      <div className="card p-3 border-0 shadow-sm text-center" style={{ backgroundColor: '#ffffff', borderRadius: '4px', minHeight: '160px' }}>
         <p className="mb-0 fw-semibold text-muted mt-2" style={{ fontSize: '15px' }}>No hay jugadores registrados</p>
       </div>
     );
@@ -42,10 +39,7 @@ const PosicionDestacada = () => {
     : `${totalArqueros} arqueros vs ${totalJugadoresCampo} en el campo`;
 
   return (
-    <div className="card p-3 border-0 shadow-sm" style={{ backgroundColor: '#ffffff', borderRadius: '4px', maxWidth: '350px' }}>
-      <h5 className="text-secondary mb-1 text-center" style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-        Posición Destacada
-      </h5>
+    <div className="card p-3 border-0 shadow-sm h-100" style={{ backgroundColor: '#ffffff', borderRadius: '4px', minHeight: '160px'  }}>
       <div className="d-flex align-items-center justify-content-center mt-2">
         {/* Renderizado de Pelota o Arco segun el conteo */}
         <span style={{ fontSize: '2.5rem', marginRight: '12px' }} aria-hidden="true">

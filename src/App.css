@@ -14,3 +14,39 @@ body,
 *, *::before, *::after {
   box-sizing: inherit;
 }
+
+/* Estilos personalizados para emular Salesforce Classic en Celeste */
+.custom-sf-table {
+  font-size: 0.85rem; /* Letra compacta como en la captura */
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+}
+
+/* Encabezado Celeste Salesforce */
+.custom-sf-table thead th {
+  background-color: #1589ee !important; /* Celeste Salesforce */
+  color: #ffffff !important;
+  font-weight: bold;
+  padding: 5px 8px;
+  border: 1px solid #1589ee !important;
+}
+
+/* Bordes internos delgados y celdas compactas */
+.custom-sf-table tbody td {
+  padding: 6px 8px;
+  border: 1px solid #d8ede3 !important; /* Borde interno muy suave */
+  color: #333333;
+}
+
+/* Línea divisoria horizontal inferior en cada fila para simular el estilo visual */
+.custom-sf-table tbody tr {
+  border-bottom: 1px solid #a2d2f7 !important; /* Línea sutil celeste */
+}
+
+/* Color personalizado para los enlaces de Salesforce */
+.custom-sf-table a {
+  color: #0176d3;
+}
+.custom-sf-table a:hover {
+  text-decoration: underline !important;
+}

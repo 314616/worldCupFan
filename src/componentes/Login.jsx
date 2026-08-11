@@ -48,10 +48,11 @@ const Login = () => {
                 localStorage.setItem('token', data.token)
                 localStorage.setItem('usuario', bodyData.usuario)
                 //localStorage.setItem('id', data.id)
+                console.log(data)
                 navigate('/dashboard')
             }).catch(error => {
                 setError(true)
-                setMensajeError('Usuario y/o contraseña incorrectos')
+                setMensajeError(error)
 
             }).finally(() => {
                 dispatch(setLoading(false))

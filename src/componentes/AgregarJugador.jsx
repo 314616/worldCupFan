@@ -149,12 +149,11 @@ const AgregarJugador = () => {
     const hoy = new Date().toISOString().split('T')[0];
     return (
         <div id="agregarJugador" className="">
-            <h2>Agregar Jugador</h2>
             <form>
                 {/* Select Selecciones */}
                 <div className="mb-3">
-                    <label htmlFor="seleccion" className="form-label text-secondary" style={{ fontSize: '13px' }}>Seleccion:</label>
-                    <select id="seleccion" className="form-select py-2" ref={seleccionJ} onChange={cambioInputs} defaultValue="" style={{ borderRadius: '4px', fontSize: '15px', color: '#4f4f4f' }} >
+                    <label htmlFor="seleccion" className="form-label text-secondary mb-1 fw-normal" style={{ fontSize: '12px' }}>Seleccion:</label>
+                    <select id="seleccion" className="form-select form-select-sm py-2" ref={seleccionJ} onChange={cambioInputs} defaultValue="" style={{ borderRadius: '4px', borderColor: '#dddbda', fontSize: '14px', color: '#16325c' }} >
                         <option value="" disabled>Seleccione un pais</option>
                         {selecciones.map(seleccion => (
                             <option key={seleccion.id} value={seleccion.id}>{seleccion.nombre}</option>
@@ -162,14 +161,14 @@ const AgregarJugador = () => {
                     </select>
                 </div>
 
-                <div>
-                    <label htmlFor="nombre">Nombre Completo</label>
-                    <input type="text" id='nombre' placeholder="Ingrese el nombre del Jugador" ref={nombreJ} onChange={cambioInputs} />
+                <div className="mb-3"> 
+                    <label htmlFor="nombre" className="form-label text-secondary mb-1 fw-normal" style={{ fontSize: '12px' }}>Nombre Completo</label>
+                    <input type="text" id='nombre' className="form-control form-control-sm py-2" placeholder="Ingrese el nombre del Jugador" ref={nombreJ} onChange={cambioInputs}  style={{ borderRadius: '4px', borderColor: '#dddbda', fontSize: '14px', color: '#16325c' }} />
                 </div>
                 {/* Select Posiciones */}
-                <div>
-                    <label htmlFor="posiciones" className="form-label text-secondary" style={{ fontSize: '13px' }}>Posicion:</label>
-                    <select id="posiciones" className="form-select py-2" ref={posicionJ} onChange={cambioInputs} defaultValue="" style={{ borderRadius: '4px', fontSize: '15px', color: '#4f4f4f' }} >
+                <div className="mb-3">
+                    <label htmlFor="posiciones" className="form-label text-secondary mb-1 fw-normal" style={{ fontSize: '12px' }}>Posicion:</label>
+                    <select id="posiciones" className="form-select form-select-sm py-2" ref={posicionJ} onChange={cambioInputs} defaultValue="" style={{ borderRadius: '4px', borderColor: '#dddbda', fontSize: '14px', color: '#16325c' }} >
                         <option value="" disabled>Seleccione una posicion</option>
                         {posiciones.map(posicion => (
                             <option key={posicion.id} value={posicion.id}>{posicion.nombre}</option>
@@ -177,9 +176,9 @@ const AgregarJugador = () => {
                     </select>
                 </div>
                 {/* Input Fecha Nacimiento*/}
-                <div>
-                    <label htmlFor='fechaNac' ></label>
-                    <input type='date' id='fechaNac' max={hoy} placeholder="Ingrese la fecha de nacimiento del jugador" ref={fechaNacJ} onChange={cambioInputs} />
+                <div className="mb-3">
+                    <label htmlFor='fechaNac' className="form-label text-secondary mb-1 fw-normal" style={{ fontSize: '12px' }} >Fecha de Nacimiento</label>
+                    <input type='date' id='fechaNac'  className="form-control form-control-sm py-2"  max={hoy} placeholder="Ingrese la fecha de nacimiento del jugador" ref={fechaNacJ} onChange={cambioInputs} style={{ borderRadius: '4px', borderColor: '#dddbda', fontSize: '14px', color: '#16325c' }}/>
                 </div>
 
                 <button type='button' className='btn w-100 py-2 fw-semibold text-white position-relative' onClick={agregarJugadorNew} disabled={!botonAgregar} style={{ backgroundColor: '#0176d3', borderColor: '#0176d3', borderRadius: '4px', fontSize: '15px' }}> Agregar</button>

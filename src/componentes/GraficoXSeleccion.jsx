@@ -25,19 +25,18 @@ const GraficoXSeleccion = () => {
     const eliminarColumnasSinJugadores = listaCantJugadoresPorSeleccion.filter(item => item.cantJugadores > 0)
 
     return (
-        <div>
-            <h2>Grafico de jugadores por Seleccion</h2>
-
+        <div style={{position: 'relative', height: '260px', width: '100%'}}>
             <Bar
                 options={{
                     responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
                         legend: {
                             position: 'top',
                         },
                         title: {
                             display: true,
-                            text: 'Jugadores',
+                            text: 'Cantidad de jugadores por Seleccion',
                         },
                     },
                 }}
@@ -45,7 +44,7 @@ const GraficoXSeleccion = () => {
                     labels: eliminarColumnasSinJugadores.map(item => item.seleccionNombre),
                     datasets:[
                         {
-                            label:'Cantidad de jugadores por seleccion',
+                            label:'Selecciones',
                             data: eliminarColumnasSinJugadores.map(item => item.cantJugadores),
                             backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         }
