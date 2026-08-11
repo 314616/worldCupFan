@@ -1,8 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-  listaPaises: [],
-  cargados: false
+  listaPaises: []
 }
 
 export const paisesSlice = createSlice({
@@ -11,7 +10,6 @@ export const paisesSlice = createSlice({
     reducers: {
         setContenidoPaises: (state, action) => {
             state.listaPaises = action.payload;
-            state.cargados = true;
         }
     }
 })

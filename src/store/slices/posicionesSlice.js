@@ -1,8 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-  listaPosiciones: [],
-  cargadosPosiciones: false
+  listaPosiciones: []
 }
 
 export const posicionesSlice = createSlice({
@@ -11,7 +10,6 @@ export const posicionesSlice = createSlice({
     reducers: {
         setContenidoPosiciones: (state, action) => {
             state.listaPosiciones = action.payload;
-            state.cargadosPosiciones = true;
         }
     }
 })

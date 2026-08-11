@@ -25,10 +25,9 @@ const AgregarJugador = () => {
 
     const dispatch = useDispatch();
     const usuarioLoading = useSelector(state => state.spinner.isLoading)
-    const { listaSelecciones: selecciones = [], cargadosS } = useSelector(state => state.selecciones)
+    const selecciones = useSelector(state => state.selecciones.listaSelecciones)
 
     useEffect(() => {
-        if (!cargadosS) {
             fetch('https://worldcupfan.develotion.com/selecciones', {
                 method: 'GET',
                 headers: {
@@ -48,14 +47,11 @@ const AgregarJugador = () => {
                 .catch(error => {
                     console.error('Error al obtener los paises:', error)
                 })
+    }, [])
 
-        }
-    }, [cargadosS, dispatch])
-
-    const { listaPosiciones: posiciones = [], cargadosPosiciones } = useSelector(state => state.posiciones)
+    const posiciones = useSelector(state => state.posiciones.listaPosiciones)
 
     useEffect(() => {
-        if (!cargadosPosiciones) {
             fetch('https://worldcupfan.develotion.com/posiciones', {
                 method: 'GET',
                 headers: {
@@ -75,8 +71,7 @@ const AgregarJugador = () => {
                 .catch(error => {
                     console.error('Error al obtener las posiciones', error)
                 })
-        }
-    }, [cargadosPosiciones, dispatch])
+    }, [])
 
     const agregarJugadorNew = () => {
         console.log('agregando jugador')

@@ -17,10 +17,9 @@ const Registro = () => {
 
     const dispatch = useDispatch()
     const usuarioLoading = useSelector(state => state.spinner.isLoading)
-    const { listaPaises: paises = [], cargados } = useSelector(state => state.paises)
-
+    //const { listaPaises: paises = []} = useSelector(state => state.paises)
+    const paises = useSelector(state => state.paises.listaPaises)
     useEffect(() => {
-        if (!cargados) {
             fetch('https://worldcupfan.develotion.com/paises')
                 .then(response => {
                     if (!response.ok) {
@@ -34,9 +33,7 @@ const Registro = () => {
                 .catch(error => {
                     console.error('Error al obtener los paises:', error)
                 })
-
-        }
-    }, [cargados, dispatch])
+    }, [])
 
     const navigate = useNavigate()
     const cambioInput = () => {
@@ -78,7 +75,7 @@ const Registro = () => {
             .catch(error => {
                 console.error('Error al registrar:', error)
                 setError(true)
-                setMensajeError('Usuario y/o contraseña incorrectos')
+                setMensajeError('Ya existe un usuario con ese nombre')
             })
             .finally(() => {
                 dispatch(setLoading(false))
@@ -89,7 +86,6 @@ const Registro = () => {
     return (
         <div className="d-flex justify-content-center align-items-center min-vh-100" style={{ backgroundColor: '#f3f3f2' }}>
             <div className="text-center" style={{ width: '100%', maxWidth: '420px', padding: '15px' }}>
-                {/* Placeholder del Logo */}
                 <h1 className="fw-bold mb-4" style={{ color: '#0176d3', fontSize: '2.5rem', letterSpacing: '-1px' }}>
                     WorldCupFan
                 </h1>
@@ -132,7 +128,7 @@ const Registro = () => {
                         </div>
                     </form>
 
-                    {/* Enlace de Login inferior dentro de la tarjeta */}
+                    {/* login */}
                     <div className="mt-4 pt-3 border-top text-center" style={{ fontSize: '14px' }}>
                         <NavLink to="/" style={{ color: '#0176d3', textDecoration: 'none' }}>
                             Volver al Login

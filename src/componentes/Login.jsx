@@ -94,7 +94,7 @@ const Login = () => {
                                     <label htmlFor="usuarioLogin" className='form-label text-secondary' style={{ fontSize: '13px' }}>Username</label>
                                     <input type="text" id="usuarioLogin" className='form-control py-2' name="usuarioLogin" placeholder='Ingrese su Usuario' ref={user} onChange={cambioInput} style={{ borderRadius: '4px', fontSize: '15px' }} />
                                 </div>
-                                <div className="mb-4">
+                                <div className="mb-3">
                                     <label htmlFor="password" className='form-label text-secondary' style={{ fontSize: '13px' }}>Contraseña</label>
                                     <input type="password" id="password" className='form-control py-2' name="password" placeholder='Ingrese su Contrasenia' ref={pass} onChange={cambioInput} style={{ borderRadius: '4px', fontSize: '15px' }} />
                                 </div>
@@ -107,7 +107,6 @@ const Login = () => {
                                 </div>
 
                             </form>
-                            {/* Enlace de Registro inferior dentro de la tarjeta */}
                             <div className="mt-4 pt-3 border-top text-center" style={{ fontSize: '14px' }}>
                                 <NavLink to="/registro" style={{ color: '#0176d3', textDecoration: 'none' }}>
                                     ¿No tienes cuenta? Regístrate aquí

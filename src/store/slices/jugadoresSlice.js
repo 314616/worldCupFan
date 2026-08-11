@@ -1,8 +1,7 @@
  import { createSlice } from "@reduxjs/toolkit";
 
  const initialState = {
-    listaJugadores: [],
-    cargadosJ: false
+    listaJugadores: []
  }
 
  export const jugadoresSlice = createSlice({
@@ -11,7 +10,6 @@
     reducers:{
         cargarJugadores: (state, action) => {
             state.listaJugadores = action.payload;
-            state.cargadosJ = true;
         },
         agregarJugador: (state, action) => {
             state.listaJugadores.push(action.payload)

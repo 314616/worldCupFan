@@ -2,14 +2,11 @@ import { useEffect, useState, useRef } from "react"
 import { useSelector, useDispatch } from "react-redux"
 
 import { cargarJugadores, eliminarJugador } from "../store/slices/jugadoresSlice";
-import { setContenidoSelecciones } from "../store/slices/seleccionesSlice";
 import '../App.css'
 
 const ListadoJugadores = () => {
 
-
   const dispatch = useDispatch();
-
   const { listaJugadores } = useSelector((state) => state.jugadores)
 
 
@@ -35,8 +32,7 @@ const ListadoJugadores = () => {
         })
   }, [])
 
-
-  const { listaSelecciones: selecciones = [], cargadosS } = useSelector(state => state.selecciones)
+  const selecciones = useSelector(state => state.selecciones.listaSelecciones);
 
   /* Filtro Select para tabla */
 
@@ -55,31 +51,6 @@ const ListadoJugadores = () => {
   const jugadoresAMostrar = valorFiltroActual === "todos"
     ? listaJugadores
     : listaJugadores.filter(jugador => String(jugador.idSeleccion) === String(valorFiltroActual));
-
-
-  useEffect(() => {
-    if (!cargadosS) {
-      fetch('https://worldcupfan.develotion.com/selecciones', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Error de respuesta de la api')
-          }
-          return response.json()
-        })
-        .then(data => {
-          dispatch(setContenidoSelecciones(data.selecciones))
-        })
-        .catch(error => {
-          console.error('Error al obtener las selecciones:', error)
-        })
-    }
-  }, [])
 
   const mapaEmojis = new Map(
     selecciones.map(seleccion => [String(seleccion.id), seleccion.emoji])
@@ -137,7 +108,7 @@ const ListadoJugadores = () => {
           ))}
         </select>
       </div>
-      <table class="table table-bordered table-sm custom-sf-table align-middle">
+      <table className="table table-bordered table-sm custom-sf-table align-middle">
         <thead>
           <tr style={{ backgroundColor: '#f2f2f2' }}>
             <th>Nombre</th>

@@ -1,8 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-  listaSelecciones: [],
-  cargadosS: false
+  listaSelecciones: []
 }
 
 export const seleccionesSlice = createSlice({
@@ -11,7 +10,6 @@ export const seleccionesSlice = createSlice({
     reducers: {
         setContenidoSelecciones: (state, action) => {
             state.listaSelecciones = action.payload;
-            state.cargadosS = true;
         }
     }
 })

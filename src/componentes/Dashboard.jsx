@@ -8,38 +8,15 @@ import SeleccionFavorita from './SeleccionFavorita'
 import TotalJugadores from './TotalJugadores'
 
 const Dashboard = () => {
-    /*const obtenerPaises = () => {
-    fetch('https://worldcupfan.develotion.com/jugadores', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Error de respuesta de la api')
-      }
-      return response.json()
-    })
-    .then(data => {
-      console.log(data)
-    })
-    .catch(error => {
-      console.error('Error al obtener los paises:', error)
-    })
-  }*/
 
   return (
-    // Removimos la barra superior porque viene heredada del layout de App.jsx
     <div style={{ backgroundColor: '#f3f3f2', minHeight: '100vh', paddingTop: '20px' }}>
       <div className="container-fluid px-4">
         <div className="row g-4"> 
           
-          {/* COLUMNA IZQUIERDA (ANCHO 4) */}
-          <div className="col-12 col-lg-4 d-flex flex-column gap-4">
+          {/* columna izq (ancho 4) */}
+          <div className="col-12 col-lg-4 d-flex flex-column gap-3">
             
-            {/* Formulario Agregar Jugador */}
             <div className="card border-light rounded-1 shadow-sm bg-white p-4" style={{ minHeight: '350px' }}>
               <h5 className="text-secondary fw-semibold text-uppercase fs-6 mb-3">Formulario Agregar Jugador</h5>
               <AgregarJugador/>
@@ -53,12 +30,11 @@ const Dashboard = () => {
 
           </div>
 
-          {/* COLUMNA DERECHA (ANCHO 8) */}
+          {/* col derecha (ancho 8) */}
           <div className="col-12 col-lg-8 d-flex flex-column gap-4">
             
-            {/* SUB-FILA DE TARJETAS ESTADÍSTICAS */}
+            {/* fila de componentes tarjetas, selfav y posDestacada */}
             <div className="row g-3">
-              {/* Cantidad Total */}
               <div className="col-12 col-md-4">
                 <div className="card border-light rounded-1 shadow-sm bg-white p-3 text-center">
                   <h5 className="text-secondary fw-semibold text-uppercase fs-6 mb-1">Cantidad Total de Jugadores</h5>
@@ -83,13 +59,13 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Gráfica Cantidad x Selección */}
+            {/* Grafica Cantidad x Seleccion */}
             <div className="card border-light rounded-1 shadow-sm bg-white p-4">
               <h5 className="text-secondary fw-semibold text-uppercase fs-6 mb-3">Gráfica de Cantidad de Jugadores por Selección</h5>
               <GraficoXSeleccion/>
             </div>
 
-            {/* Gráfica Porcentaje x Posición */}
+            {/* Grafica Porcentaje x Posicion */}
             <div className="card border-light rounded-1 shadow-sm bg-white p-4">
               <h5 className="text-secondary fw-semibold text-uppercase fs-6 mb-3">Gráfica de Porcentaje de Jugadores Posición</h5>
               <GrafixoXPosicion/>
